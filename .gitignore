@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.uid
+
+# macOS
+.DS_Store
+
+# User photos / personal assets
+assets/
+
+# Development tooling — not needed to run the app
+addons/
+.mcp.json
+.claude/
