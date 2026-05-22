@@ -24,7 +24,7 @@
 - Output: Encouraging message based on user's input
 
 ## UI
-- Side bar contains: Activity Input, Dashboard, Companies
+- Side bar contains: Activity Input, Dashboard, Companies, Weekly Review
 
 ### Activity Input
 - Main page that opens when the app is opened
@@ -69,7 +69,7 @@ Three input modes are supported via prefix in the text box:
         - 'Offer declined': When user uses `[update]` and mentions declining an offer
 - Assign different color for each progress state
 
-### Weekly review
+### Weekly Review
 - 3 text boxes at the top, each for feelings, wins, and opportunity for improvement
 - A table of feelings about the week, wins and opportunity for improvements (OFPs)
 - Column names are: Week, Feelings, Wins, OFPs
@@ -82,7 +82,7 @@ Three input modes are supported via prefix in the text box:
 ## First session
 **SAY:**
 
-"Hi! I'm Momo. I'm your job search buddy. Could you tell me your name?"
+"Hi! I'm your job search buddy. Could you tell me your name?"
 
 **CHECK:** Wait for user response
 

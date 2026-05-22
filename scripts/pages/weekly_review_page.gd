@@ -120,7 +120,7 @@ func _build_ui() -> void:
 	buddy_bg.add_child(_buddy_display)
 
 	var momo_lbl := Label.new()
-	momo_lbl.text = "Momo says..."
+	momo_lbl.text = "%s says..." % AIService.get_buddy_name()
 	momo_lbl.add_theme_font_size_override("font_size", 13)
 	momo_lbl.add_theme_color_override("font_color", Color("#888899"))
 	right.add_child(momo_lbl)

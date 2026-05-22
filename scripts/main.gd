@@ -82,7 +82,7 @@ func _build_sidebar() -> Control:
 	hvbox.add_child(title)
 
 	var sub := Label.new()
-	sub.text = "with Momo 🦭"
+	sub.text = "with %s 🦭" % AIService.get_buddy_name()
 	sub.add_theme_font_size_override("font_size", 12)
 	sub.add_theme_color_override("font_color", Color(1, 1, 1, 0.75))
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -192,9 +192,10 @@ func _show_first_session() -> void:
 		_dm.call("mark_greeted")
 		_close_overlay()
 		_show_welcome(user_name)
+	var bname := AIService.get_buddy_name()
 	_show_dialog(
-		"Hi! I'm Momo! 🦭",
-		"Hi! I'm Momo. I'm your job search buddy.\n\nCould you tell me your name?",
+		"Hi! I'm %s! 🦭" % bname,
+		"Hi! I'm %s. I'm your job search buddy.\n\nCould you tell me your name?" % bname,
 		"Your name"
 	)
 
@@ -429,7 +430,7 @@ func _on_ai_response_for_dialog(text: String) -> void:
 
 func _show_encouragement_dialog(message: String) -> void:
 	_dialog_submit_callback = func(_t: String) -> void: _close_overlay()
-	_show_dialog("Momo says... 💗", message, "", false)
+	_show_dialog("%s says... 💗" % AIService.get_buddy_name(), message, "", false)
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 

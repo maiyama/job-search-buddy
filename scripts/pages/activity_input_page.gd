@@ -177,7 +177,7 @@ func _build_ui() -> void:
 	buddy_bg.add_child(_buddy_display)
 
 	var history_lbl := Label.new()
-	history_lbl.text = "Momo says..."
+	history_lbl.text = "%s says..." % AIService.get_buddy_name()
 	history_lbl.add_theme_font_size_override("font_size", 13)
 	history_lbl.add_theme_color_override("font_color", Color("#888899"))
 	right.add_child(history_lbl)
@@ -201,7 +201,7 @@ func _load_todos() -> void:
 	var todos: Array = _dm.call("get_today_todos") as Array
 	if todos.is_empty():
 		var lbl := Label.new()
-		lbl.text = "Share your goals for today with Momo at the start of the day! 💪"
+		lbl.text = "Share your goals for today with %s at the start of the day! 💪" % AIService.get_buddy_name()
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.add_theme_color_override("font_color", Color("#888899"))
 		lbl.add_theme_font_size_override("font_size", 13)
@@ -379,7 +379,7 @@ func _load_weekly_goals() -> void:
 	var goals: Array = _dm.call("get_this_week_goals") as Array
 	if goals.is_empty():
 		var lbl := Label.new()
-		lbl.text = "Set your goals for this week with Momo! 🌱"
+		lbl.text = "Set your goals for this week with %s! 🌱" % AIService.get_buddy_name()
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.add_theme_color_override("font_color", Color("#888899"))
 		lbl.add_theme_font_size_override("font_size", 13)

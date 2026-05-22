@@ -13,6 +13,7 @@ var _busy := false
 var _queue: Array = []
 var _dm: Node
 var _buddy_context := ""
+var _buddy_name := "Buddy"
 
 const FALLBACKS := {
 	"interview_scheduled": [
@@ -54,6 +55,16 @@ func _load_buddy_context() -> void:
 	if file:
 		_buddy_context = file.get_as_text().strip_edges()
 		file.close()
+		var lines := _buddy_context.split("\n")
+		for i in range(lines.size() - 1):
+			if lines[i].strip_edges() == "## Name":
+				var name_line := lines[i + 1].strip_edges()
+				if name_line.length() > 0:
+					_buddy_name = name_line
+				break
+
+func get_buddy_name() -> String:
+	return _buddy_name
 
 func has_api_key() -> bool:
 	return not str(_dm.call("get_api_key")).is_empty()
