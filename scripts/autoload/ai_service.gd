@@ -28,8 +28,8 @@ const FALLBACKS := {
 	],
 	"all_done": [
 		"Everything on your list — done. That's discipline, not luck. 🎉",
-		"All goals complete. You said you'd do it, and you did. 💪",
-		"Goals done! Days like this build real momentum. ⭐"
+		"All to-dos complete. You said you'd do it, and you did. 💪",
+		"To-dos done! Days like this build real momentum. ⭐"
 	],
 	"encouragement": [
 		"You keep showing up. That matters more than you know. 💗",
@@ -91,7 +91,7 @@ func get_buddy_response(user_text: String, context: String = "") -> void:
 	var system_msg := ""
 	if not _buddy_context.is_empty():
 		system_msg = "[Buddy profile]\n%s\n\n" % _buddy_context
-	system_msg += "Be warm but brief and genuine — not sycophantic. Only celebrate real milestones: an interview scheduled, an offer received, or all daily goals completed. For those, 1-2 sentences of genuine encouragement. Otherwise, skip praise."
+	system_msg += "Be warm but brief and genuine — not sycophantic. Only celebrate real milestones: an interview scheduled, an offer received, or all daily to-dos completed. For those, 1-2 sentences of genuine encouragement. Otherwise, skip praise."
 	var prompt := "User: %s\nContext: %s\nMessage: %s\n\nRespond in 1-2 sentences. Match the weight of the moment." % [user_name, context, user_text]
 	_call_api(system_msg, prompt, func(r: String): response_ready.emit(r))
 
@@ -137,11 +137,13 @@ JSON format (required fields, use empty string if not found):
 }
 
 Activity type guide:
-- Review: planning, reviewing progress, daily reflection, preparing notes
-- Research: researching companies, reading about industry, watching company videos
+- Review: reviewing your own job search progress, end-of-day or weekly reflection, planning your job search schedule for the day/week
+- Research: researching companies, roles, or industries; reading about products or company culture; watching company videos; researching any topic to prepare for interviews or applications
 - Interview: interview calls, interview prep, mock interviews, practice stories
 - Application: applying to jobs, updating resume/LinkedIn profile, sending applications
-- Networking: reaching out to people, coffee chats, messaging contacts, recruiter calls""" % text
+- Networking: reaching out to people, coffee chats, messaging contacts, recruiter calls
+
+Important: if the activity mentions "research" or "researched", prefer Research over Review unless it is clearly a self-reflection or personal job search planning session.""" % text
 
 	_call_api(system_msg, prompt, func(r: String):
 		var clean := r.strip_edges()

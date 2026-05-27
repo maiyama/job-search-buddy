@@ -116,7 +116,7 @@ func _build_ui() -> void:
 	left.add_child(todo_row)
 
 	var todo_hdr := Label.new()
-	todo_hdr.text = "Today's Goals"
+	todo_hdr.text = "Today's To-Dos"
 	todo_hdr.add_theme_font_size_override("font_size", 17)
 	todo_hdr.add_theme_color_override("font_color", Color("#000000"))
 	todo_hdr.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -140,7 +140,7 @@ func _build_ui() -> void:
 	left.add_child(weekly_row)
 
 	var weekly_hdr := Label.new()
-	weekly_hdr.text = "This Week's Goals"
+	weekly_hdr.text = "This Week's To-Dos"
 	weekly_hdr.add_theme_font_size_override("font_size", 17)
 	weekly_hdr.add_theme_color_override("font_color", Color("#000000"))
 	weekly_hdr.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -201,7 +201,7 @@ func _load_todos() -> void:
 	var todos: Array = _dm.call("get_today_todos") as Array
 	if todos.is_empty():
 		var lbl := Label.new()
-		lbl.text = "Share your goals for today with %s at the start of the day! 💪" % AIService.get_buddy_name()
+		lbl.text = "Share your to-dos for today with %s at the start of the day! 💪" % AIService.get_buddy_name()
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.add_theme_color_override("font_color", Color("#888899"))
 		lbl.add_theme_font_size_override("font_size", 13)
@@ -379,7 +379,7 @@ func _load_weekly_goals() -> void:
 	var goals: Array = _dm.call("get_this_week_goals") as Array
 	if goals.is_empty():
 		var lbl := Label.new()
-		lbl.text = "Set your goals for this week with %s! 🌱" % AIService.get_buddy_name()
+		lbl.text = "Set your to-dos for this week with %s! 🌱" % AIService.get_buddy_name()
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.add_theme_color_override("font_color", Color("#888899"))
 		lbl.add_theme_font_size_override("font_size", 13)

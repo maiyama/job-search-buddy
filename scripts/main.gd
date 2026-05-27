@@ -205,7 +205,7 @@ func _show_welcome(user_name: String) -> void:
 		_show_daily_greeting()
 	_show_dialog(
 		"Nice to meet you, %s! 💗" % user_name,
-		"I'll be cheering you on every step of the way.\n\nLet's start by setting your goals for today!",
+		"I'll be cheering you on every step of the way.\n\nLet's start by setting your to-dos for today!",
 		"",
 		false
 	)
@@ -251,8 +251,8 @@ func _show_edit_goals_dialog() -> void:
 		_close_overlay()
 		_parse_and_save_todos(text)
 	_show_dialog(
-		"Edit Today's Goals ✏",
-		"Update your goals for today. Up to 2, separated by a comma.",
+		"Edit Today's To-Dos ✏",
+		"Update your to-dos for today. Up to 2, separated by a comma.",
 		prefill if not prefill.is_empty() else "e.g., Apply to 3 companies, Reach out to a contact"
 	)
 
@@ -262,8 +262,8 @@ func _show_weekly_goals_dialog() -> void:
 		_dm.call("mark_week_prompted")
 		_parse_and_save_weekly_goals(text)
 	_show_dialog(
-		"New Week, New Goals! 🌱",
-		"It's a new week! What are your goals for this week?\nSeparate multiple goals with a comma.",
+		"New Week, New To-Dos! 🌱",
+		"It's a new week! What are your to-dos for this week?\nSeparate multiple to-dos with a comma.",
 		"e.g., Land 2 interviews, Expand my network"
 	)
 
@@ -281,8 +281,8 @@ func _show_edit_weekly_goals_dialog() -> void:
 		_close_overlay()
 		_parse_and_save_weekly_goals(text)
 	_show_dialog(
-		"Edit This Week's Goals ✏",
-		"Update your goals for this week. Separate multiple goals with a comma.",
+		"Edit This Week's To-Dos ✏",
+		"Update your to-dos for this week. Separate multiple to-dos with a comma.",
 		prefill if not prefill.is_empty() else "e.g., Land 2 interviews, Expand my network"
 	)
 

@@ -72,9 +72,10 @@ func _build_ui() -> void:
 	header_card.add_child(header_row)
 
 	_make_col_header("Company", header_row, 2)
-	_make_col_header("Role", header_row, 2)
+	_make_col_header("Role", header_row, 3)
 	_make_col_header("Contacts", header_row, 2)
-	_make_col_header("Progress", header_row, 2)
+	_make_col_header("Progress", header_row, 1)
+	_make_col_header("Date", header_row, 1)
 
 	# Spacer aligned to the edit + delete buttons
 	var actions_spacer := Control.new()
@@ -109,7 +110,7 @@ func _refresh() -> void:
 	var companies: Array = _dm.call("get_companies") as Array
 	_empty_label.visible = companies.is_empty()
 
-	for i in companies.size():
+	for i in range(companies.size() - 1, -1, -1):
 		var company: Dictionary = companies[i]
 		var row_card := PanelContainer.new()
 		var rs := StyleBoxFlat.new()
@@ -129,12 +130,13 @@ func _refresh() -> void:
 		row_card.add_child(row)
 
 		_make_cell(company.get("name", ""), row, 2, true)
-		_make_cell(company.get("role", "—"), row, 2, false)
+		_make_cell(company.get("role", "—"), row, 3, false)
 		_make_cell(company.get("contacts", "—"), row, 2, false)
 
 		# Progress dropdown
 		var prog_container := HBoxContainer.new()
 		prog_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		prog_container.size_flags_stretch_ratio = 1
 		row.add_child(prog_container)
 
 		var current_prog: String = company.get("progress", "Applied")
@@ -157,6 +159,10 @@ func _refresh() -> void:
 				_as.call("get_buddy_response", "gone", "gone")
 		)
 		prog_container.add_child(opt)
+
+		# Date cell
+		var date_str := _format_date(company.get("applied_date", ""))
+		_make_cell(date_str, row, 1, false)
 
 		# Edit button
 		var edit_btn := Button.new()
@@ -333,6 +339,20 @@ func _make_cell(text: String, parent: Node, expand: int, bold: bool) -> void:
 	lbl.size_flags_stretch_ratio = expand
 	lbl.clip_text = true
 	parent.add_child(lbl)
+
+func _format_date(date_str: String) -> String:
+	if date_str.is_empty():
+		return "—"
+	var parts := date_str.split("-")
+	if parts.size() < 3:
+		return date_str
+	var month_names := ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+						"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+	var month := int(parts[1])
+	var day := int(parts[2])
+	if month < 1 or month > 12:
+		return date_str
+	return "%s %d" % [month_names[month - 1], day]
 
 func _make_progress_chip(progress: String) -> Control:
 	var panel := PanelContainer.new()
