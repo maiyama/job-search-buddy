@@ -33,7 +33,7 @@
 - Underneath of the text box, display time choice for user to input from what time to what time user did the activity. Make 'Now' option available
 - Display Momo the seal buddy beside the text box (right panel). Momo's responses appear in the "Momo says..." scroll area below the illustration — no speech bubble on Momo directly
 - After user specifies to-do for each day, display a check-box list of to-do activities that user can check boxes to indicate that they are done **Max 2 to-do items per day**
-- Below Today's Goals, display This Week's Goals as a separate checkbox list
+- Below Today's To-Dos, display This Week's To-Dos as a separate checkbox list
 
 #### Input modes
 Three input modes are supported via prefix in the text box:
